@@ -15,7 +15,7 @@ $this->menu=array(
     array(
         'label'=>Yii::t('mc', 'Welcome'),
         'url'=>array('', 'view'=>'home'),
-        'icon'=>'welcome',
+        'icon'=>'home',
     ),
     array(
         'label'=>Yii::t('mc', 'Help'),

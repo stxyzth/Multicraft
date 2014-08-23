@@ -122,7 +122,7 @@ class CWebApplication extends CApplication
 	private $_layoutPath;
 	private $_controller;
 	private $_theme;
-
+	
 
 	/**
 	 * Processes the current request.

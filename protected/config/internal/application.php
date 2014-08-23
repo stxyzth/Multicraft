@@ -32,13 +32,12 @@ unset($params['panel_db']);
 unset($params['panel_db_user']);
 unset($params['panel_db_pass']);
 
-
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..',
     'name'=>'Multicraft',
 
     // preloading 'log' component
-    'preload'=>array('log'),
+    'preload'=>array('log, bootstrap'),
 
     'import'=>array(
         'application.extensions.*',
@@ -46,10 +45,9 @@ return array(
         'application.components.*',
         'ext.yii-mail.YiiMailMessage',
     ),
-
     'modules'=>array(
     ),
-
+    
     // application components
     'components'=>array(
         'user'=>array(
@@ -57,6 +55,9 @@ return array(
             // enable cookie-based authentication
             'allowAutoLogin'=>true,
         ),
+        'bootstrap' => array(
+    		'class' => 'ext.yiibooster.components.Booster',
+		),
         'authManager'=>array(
             'class'=>'DbAuthManager',
             'connectionID'=>'db',
