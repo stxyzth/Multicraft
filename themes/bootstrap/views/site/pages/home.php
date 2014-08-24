@@ -6,17 +6,21 @@
  *   All rights reserved.
  *
  **/
- 
-$this->pageTitle=Yii::app()->name . ' - '.Yii::t('mc', 'Home');
-$this->breadcrumbs=array(
-    Yii::t('mc', 'Home'),
-);
 
-$this->menu=array(
+$this->pageTitle=Yii::app()->name . ' - '.Yii::t('mc', 'Home');
+Yii::app()->getComponent("bootstrap");
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+		'links'=>array(Yii::t('mc', 'Home'),
+		))
+);
+$this->widget('booster.widgets.TbMenu', array(
+    'type'=>'tabs',
+    'stacked'=>false,
+    'items'=>array(
     array(
         'label'=>Yii::t('mc', 'Welcome'),
         'url'=>array('', 'view'=>'home'),
-        'icon'=>'welcome',
+        'icon'=>'home',
     ),
     array(
         'label'=>Yii::t('mc', 'Help'),
@@ -29,8 +33,9 @@ $this->menu=array(
     array(
         'label'=>Yii::t('mc', 'About'),
         'url'=>array('', 'view'=>'about'),
-        'icon'=>'about',
+        'icon'=>'home',
     ),
+  ))
 );
 
 

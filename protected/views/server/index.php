@@ -8,8 +8,10 @@
  **/
 $this->pageTitle = Yii::app()->name . ' - '.Yii::t('mc', 'Server List');
 
-$this->breadcrumbs=array(
-    Yii::t('mc', 'Servers'),
+Yii::app()->getComponent("bootstrap");
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+		'links'=>array(Yii::t('mc', 'Servers'),
+		))
 );
 
 echo CHtml::css('
