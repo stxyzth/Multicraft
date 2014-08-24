@@ -8,7 +8,7 @@ return array (
   'api_enabled' => true,
   'api_allow_get' => false,
   'admin_name' => 'Multicraft Administrator',
-  'admin_email' => '',
+  'admin_email' => 'test@test.com',
   'hide_userlist' => true,
   'ftp_client_disabled' => false,
   'ajax_updates_disabled' => false,

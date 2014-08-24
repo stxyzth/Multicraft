@@ -6,63 +6,33 @@
  *   All rights reserved.
  *
  **/
-Yii::app()->getComponent("bootstrap");
-//$this->pageTitle=Yii::app()->name . ' - '.Yii::t('mc', 'Home');
-//$this->breadcrumbs=array(
-//    Yii::t('mc', 'Home'),
-//);
-
-
-
-$this->widget(
-    'booster.widgets.TbNavbar',
-    array(
-        'brand' => 'Title',
-        'fixed' => false,
-    	'fluid' => true,
-        'items' => array(
-            array(
-                'class' => 'booster.widgets.TbMenu',
-            	'type' => 'navbar',
-                'items' => array(
-                    array('label' => 'Home', 'url' => '#', 'active' => true),
-                    array('label' => 'Link', 'url' => 'About'),
-                    array('label' => 'Link', 'url' => '#'),
-                )
-            )
-        )
-    )
+ 
+$this->pageTitle=Yii::app()->name . ' - '.Yii::t('mc', 'Home');
+$this->breadcrumbs=array(
+    Yii::t('mc', 'Home'),
 );
 
+$this->menu=array(
+    array(
+        'label'=>Yii::t('mc', 'Welcome'),
+        'url'=>array('', 'view'=>'home'),
+        'icon'=>'welcome',
+    ),
+    array(
+        'label'=>Yii::t('mc', 'Help'),
+        'url'=>'#',
+        'icon'=>'help',
+        'linkOptions'=>array(
+            'submit'=>'http://multicraft.org/site/docs',
+            'confirm'=>Yii::t('mc', "You are leaving your control panel.\n\nYou will be forwarded to the documentation on the official Multicraft website.")),
+    ),
+    array(
+        'label'=>Yii::t('mc', 'About'),
+        'url'=>array('', 'view'=>'about'),
+        'icon'=>'about',
+    ),
+);
 
-
-
-//$this->widget('booster.widgets.TbNavbar',
-//    array(
-//        'brand' => 'Title',
-//        'fixed' => false,
-//    	'fluid' => true,
-//    	'items' => array(
-//$this->menu=array(
-//	array(
-//        'class' => 'booster.widgets.TbMenu',
-//       	'type' => 'navbar',
-//        'items' => array(
-//    array('label'=>Yii::t('mc', 'Welcome', 'url'=>'', 'view'=>'home', 'icon'=>'home', 'active' => true),
-//    array(
-//        'label'=>Yii::t('mc', 'Help'),
-//       'url'=>'#',
-//        'icon'=>'help',
-//        'linkOptions'=>array(
-//            'submit'=>'http://multicraft.org/site/docs',
-//            'confirm'=>Yii::t('mc', "You are leaving your control panel.\n\nYou will be forwarded to the documentation on the official Multicraft website.")),
-//    ),
-//    array(
-//        'label'=>Yii::t('mc', 'About'),
-//        'url'=>array('', 'view'=>'about'),
-//        'icon'=>'about',
-//    )))),
-//);
 
 ?>
 <br/>

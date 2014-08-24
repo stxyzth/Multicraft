@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('ie.css') ?>" media="screen, projection" />
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('main.css') ?>" />
+<!--    <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('main.css') ?>" /> -->
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('form.css') ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('theme.css') ?>" />
 
@@ -47,75 +47,64 @@
 <div id="border-right"></div>
 <div class="container" id="page">
 
-    <div id="header">
-        <div id="logo">
-            <div id="logo_icon"><?php echo Theme::img('multicraft.png') ?></div>
-            <div id="logo_text"><?php echo Theme::img('logo.png') ?></div>
-            <div id="header_text"> <?php echo CHtml::encode(Yii::app()->name); ?><br/><span style="font-size: 12px"><?php echo Yii::t('mc', 'Minecraft Server Manager') ?></span></div>
-        </div>
-    </div><!-- header -->
-
     <div id="mainmenu">
         <?php
+        Yii::app()->getComponent("bootstrap");
         $items = array();
 
         $simple = (Yii::app()->theme && in_array(Yii::app()->theme->name, array('simple', 'mobile', 'platform')));
-        if (!$simple)
-            $items[] = array('label'=>Yii::t('mc', 'Home'), 'url'=>array('/site/page', 'view'=>'home'));
-        if (@Yii::app()->params['installer'] !== 'show')
-        {
-            $items[] = array(
+        $this->widget('booster.widgets.TbNavbar',
+            array(
+        		'brand' => 'Multicraft',
+//        		'type' => 'inverse', //Remove the start of this line for black navbar
+        		'fixed' => false,
+        		'fluid' => true,
+        		'items' => array(
+            array(
+                'class' => 'booster.widgets.TbMenu',
+            	'type' => 'navbar',
+                'items' => array(
+            array('label'=>Yii::t('mc', 'Home'), 'url'=>array('/site/page', 'view'=>'home')),
+            array(
                 'label'=>Yii::t('mc', 'Servers'),
                 'url'=>array('/server/index', 'my'=>($simple && !Yii::app()->user->isSuperuser() ? 1 : 0)),
-            );
-            $items[] = array(
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Users'),
                 'url'=>array('/user/index'),
                 'visible'=>(Yii::app()->user->isSuperuser()
                     || !(Yii::app()->user->isGuest || (Yii::app()->params['hide_userlist'] === true) || $simple)),
-            );
-            $items[] = array(
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Profile'),
                 'url'=>array('/user/view', 'id'=>Yii::app()->user->id),
                 'visible'=>(!Yii::app()->user->isSuperuser() && !Yii::app()->user->isGuest
                     && ((Yii::app()->params['hide_userlist'] === true) || $simple)),
-            );
-            $items[] = array(
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Settings'),
                 'url'=>array('/daemon/index'),
                 'visible'=>Yii::app()->user->isSuperuser(),
-            );
-            $items[] = array(
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Support'),
                 'url'=>array('/site/report'),
                 'visible'=>!empty(Yii::app()->params['admin_email']),
-            );
-        }
-        if (Yii::app()->user->isGuest)
-        {
-            $items[] = array(
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Login'),
                 'url'=>array('/site/login'),
-                'itemOptions'=>$simple ? array('style'=>'float: right') : array(),
-            );
-        }
-        else
-        {
-            $items[] = array(
+                'visible'=>(Yii::app()->user->isGuest),
+            ),
+            array(
                 'label'=>Yii::t('mc', 'Logout ({name})', array('{name}'=>Yii::app()->user->name)),
                 'url'=>array('/site/logout'),
-                'itemOptions'=>$simple ? array('style'=>'float: right') : array(),
-            );
-        }
-        $items[] = array(
-            'label'=>Yii::t('mc', 'About'),
-            'url'=>array('/site/page', 'view'=>'about'),
-            'visible'=>$simple,
-            'itemOptions'=>array('style'=>'float: right'),
-        );
-        
-        
-        $this->widget('zii.widgets.CMenu',array('items'=>$items)); ?>
+                'visible'=>(!Yii::app()->user->isGuest),
+            ),
+                ))))
+	);
+
+?>
         <?php if (!$simple): ?>
             <div class="notice"><?php echo $this->notice ?></div>
         <?php endif ?>
@@ -139,7 +128,7 @@
     </div>
     <?php if (Yii::app()->params['copyright']): ?>
     <div id="footer">
-        Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a>
+        Powered by <a href="http://www.multicraft.org">Multicraft Control Pane</a>
     </div><!-- footer -->
     <?php endif ?>
 
