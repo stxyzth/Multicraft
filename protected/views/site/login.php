@@ -59,7 +59,17 @@ $this->breadcrumbs=array(
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton(Yii::t('mc', 'Login')); ?>
+        <?php 
+        Yii::app()->getComponent("bootstrap");
+        $this->widget(
+    		'booster.widgets.TbButton',
+    	array(
+    		'buttonType' => 'submit',
+    		'label' => 'Login',
+    		'context' => 'primary',
+    		'url' => Yii::t('mc', 'Login'),
+    		)
+         ); ?>
     </div>
 
 <?php $this->endWidget(); ?>

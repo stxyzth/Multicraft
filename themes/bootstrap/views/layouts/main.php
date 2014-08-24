@@ -128,7 +128,7 @@
     </div>
     <?php if (Yii::app()->params['copyright']): ?>
     <div id="footer">
-        Powered by <a href="http://www.multicraft.org">Multicraft Control Pane</a>
+        Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a>
     </div><!-- footer -->
     <?php endif ?>
 
