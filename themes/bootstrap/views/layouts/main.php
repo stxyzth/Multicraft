@@ -87,82 +87,82 @@
         <?php
         Yii::app()->getComponent("bootstrap");
         $items = array();
-
-        $simple = (Yii::app()->theme && in_array(Yii::app()->theme->name, array('simple', 'mobile', 'platform')));
-        $this->widget('booster.widgets.TbNavbar',
-            array(
-        		'brand' => 'Multicraft',
-//        		'type' => 'inverse', //Remove the start of this line for black navbar
-        		'fixed' => 'top',
-        		'fluid' => false,
-        		'htmlOptions' => array('style' => 'position:absolute'),
-        		'items' => array(
+$this->widget(
+    'booster.widgets.TbNavbar',
+    array(
+        'type' => null, // null or 'inverse'
+        'brand' => 'Multicraft',
+        'brandUrl' => array('/site/page', 'view'=>'home'),
+        'collapse' => true, // requires bootstrap-responsive.css
+        'fixed' => 'top',
+        'fluid' => false,
+        'htmlOptions' => array('style' => 'position:absolute'),
+        'items' => array(
             array(
                 'class' => 'booster.widgets.TbMenu',
             	'type' => 'navbar',
                 'items' => array(
-            array('label'=>Yii::t('mc', 'Home'), 'url'=>array('/site/page', 'view'=>'home')),
-            array(
-                'label'=>Yii::t('mc', 'Servers'),
-                'url'=>array('/server/index', 'my'=>($simple && !Yii::app()->user->isSuperuser() ? 1 : 0)),
+            		array('label'=>Yii::t('mc', 'Home'), 'url'=>array('/site/page', 'view'=>'home')),
+            		array(
+                		  'label'=>Yii::t('mc', 'Servers'),
+                	      'url'=>array('/server/index', 'my'=>(!Yii::app()->user->isSuperuser() ? 1 : 0))),
+            		array(
+            			  'label'=>Yii::t('mc', 'Users'),
+                	      'url'=>array('/user/index'),
+                	      'visible'=>(Yii::app()->user->isSuperuser()
+                	       || !(Yii::app()->user->isGuest || (Yii::app()->params['hide_userlist'] === true)))),
+            		array(
+                	      'label'=>Yii::t('mc', 'Profile'),
+                	      'url'=>array('/user/view', 'id'=>Yii::app()->user->id),
+                	      'visible'=>(!Yii::app()->user->isSuperuser() && !Yii::app()->user->isGuest
+                	        && ((Yii::app()->params['hide_userlist'] === true)))),
+            		array(
+                	      'label'=>Yii::t('mc', 'Settings'),
+                	      'url'=>array('/daemon/index'),
+                	      'visible'=>Yii::app()->user->isSuperuser()),
+            		array(
+                	      'label'=>Yii::t('mc', 'Support'),
+                	      'url'=>array('/site/report'),
+                	      'visible'=>!empty(Yii::app()->params['admin_email'])),
+                ),
             ),
             array(
-                'label'=>Yii::t('mc', 'Users'),
-                'url'=>array('/user/index'),
-                'visible'=>(Yii::app()->user->isSuperuser()
-                    || !(Yii::app()->user->isGuest || (Yii::app()->params['hide_userlist'] === true) || $simple)),
+                'class' => 'booster.widgets.TbMenu',
+                'type' => 'navbar',
+                'htmlOptions' => array('class' => 'pull-right'),
+                'items' => array(
+            		array(
+                	      'label'=>Yii::t('mc', 'Logout ({name})', array('{name}'=>Yii::app()->user->name)),
+                	      'url'=>array('/site/logout'),
+                	      'visible'=>(!Yii::app()->user->isGuest)),
+                	array(
+                          'label' => 'Account',
+                          'items' => array(
+            		array(
+                	      'label'=>Yii::t('mc', 'Login'),
+                	      'url'=>array('/site/login'),
+                	      'visible'=>(Yii::app()->user->isGuest)),
+                	array(
+                	      'label'=>Yii::t('mc', 'Register'),
+                	      'url'=>array('/site/register'),
+                	      'visible'=>(Yii::app()->user->isGuest)),
+                	      ))
+                ),
             ),
-            array(
-                'label'=>Yii::t('mc', 'Profile'),
-                'url'=>array('/user/view', 'id'=>Yii::app()->user->id),
-                'visible'=>(!Yii::app()->user->isSuperuser() && !Yii::app()->user->isGuest
-                    && ((Yii::app()->params['hide_userlist'] === true) || $simple)),
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Settings'),
-                'url'=>array('/daemon/index'),
-                'visible'=>Yii::app()->user->isSuperuser(),
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Support'),
-                'url'=>array('/site/report'),
-                'visible'=>!empty(Yii::app()->params['admin_email']),
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Login'),
-                'url'=>array('/site/login'),
-                'visible'=>(Yii::app()->user->isGuest),
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Logout ({name})', array('{name}'=>Yii::app()->user->name)),
-                'url'=>array('/site/logout'),
-                'visible'=>(!Yii::app()->user->isGuest),
-            ),
-                ))))
-	);
+        ),
+    )
+);
 echo CHtml::closeTag('br');
 echo CHtml::closeTag('br');
 echo CHtml::closeTag('br');
 echo CHtml::closeTag('br');
 
 ?>
-        <?php if (!$simple): ?>
-            <div class="notice"><?php echo $this->notice ?></div>
-        <?php endif ?>
     </div><!-- mainmenu -->
 
     <div id="outer">
 
-    <?php
-        if (!$simple)
-        {
-            array_pop($this->breadcrumbs);
-            $this->widget('zii.widgets.CBreadcrumbs', array(
-                'homeLink'=>'',
-                'links'=>$this->breadcrumbs,
-            ));
-        }
-    ?><!-- breadcrumbs -->
+
     <?php echo $content; ?>
     </div>
     
