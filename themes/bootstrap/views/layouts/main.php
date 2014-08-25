@@ -170,7 +170,7 @@ echo CHtml::closeTag('br');
    
               <div id="push"></div>
               </div>
-    </div>
+    </div><!--wrap-->
     <div id="footer">
       <div class="container">
          <p class="muted credit" style="text-align: center; margin-top: 20px;">Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a></p>
