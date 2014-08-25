@@ -14,7 +14,7 @@ $this->widget('booster.widgets.TbBreadcrumbs', array(
 		'links'=>array(Yii::t('mc', 'Home'),
 		))
 );
-
+echo CHtml::openTag('div class="well" style="max-width: 330px; padding: 8px 0;"');
 $this->widget('booster.widgets.TbMenu', array(
     'type'=>'list',
     'stacked'=>false,
@@ -39,6 +39,7 @@ $this->widget('booster.widgets.TbMenu', array(
     ),
   ))
 );
+echo CHtml::closetag('div');
 ?>
 </div>
 <div class="col-md-8">
@@ -48,7 +49,7 @@ $this->widget(
     array(
         'title' => 'Home',
         'headerIcon' => 'home',
-        'content' => 'Welcome to the new bootstrap theme for Multicraft.'
+        'content' => 'Welcome to the new bootstrap theme for Multicraft.<br /> <br /><br /> <br /><br /> <br />'
 	)
 );
 

@@ -36,6 +36,9 @@
 <!--    <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('main.css') ?>" /> -->
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('form.css') ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('theme.css') ?>" />
+    <style>
+    body {background-image: url("images/bg.png");}
+    </style>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
