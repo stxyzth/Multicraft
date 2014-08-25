@@ -36,18 +36,54 @@
 <!--    <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('main.css') ?>" /> -->
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('form.css') ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo Theme::css('theme.css') ?>" />
-    <style>
+        <style type="text/css">
+        /* Custom Background */
     body {background-image: url("images/bg.png");}
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
     </style>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
-
-<div id="frame">
+<div id="wrap">
 <div class="container" id="page">
-
     <div id="mainmenu">
         <?php
         Yii::app()->getComponent("bootstrap");
@@ -128,17 +164,21 @@ echo CHtml::closeTag('br');
             ));
         }
     ?><!-- breadcrumbs -->
-
     <?php echo $content; ?>
     </div>
-    <?php if (Yii::app()->params['copyright']): ?>
+    
+   
+              <div id="push"></div>
+              </div>
+    </div>
     <div id="footer">
-        Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a>
+      <div class="container">
+         <p class="muted credit" style="text-align: center; margin-top: 20px;">Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a></p>
+        </div>
     </div><!-- footer -->
-    <?php endif ?>
 
-</div><!-- page -->
-</div>
+<!-- page -->
+
 </body>
 <!--  C o p y r i g h t   (c)   2 0 1 0 - 2 0 1 2   b y   x h o s t . c h   G m b H .   A l l   r i g h t s   r e s e r v e d .  -->
 </html>
