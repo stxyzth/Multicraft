@@ -130,7 +130,7 @@ $this->widget(
                 'class' => 'booster.widgets.TbMenu',
                 'type' => 'navbar',
                 'htmlOptions' => array('class' => 'pull-right'),
-                'items' => array(
+                'items' => array(	
             		array(
                 	      'label'=>Yii::t('mc', 'Logout ({name})', array('{name}'=>Yii::app()->user->name)),
                 	      'url'=>array('/site/logout'),
@@ -146,7 +146,8 @@ $this->widget(
                 	      'label'=>Yii::t('mc', 'Register'),
                 	      'url'=>array('/site/register'),
                 	      'visible'=>(Yii::app()->user->isGuest)),
-                	      ))
+                	      )
+                	    )
                 ),
             ),
         ),
@@ -161,8 +162,6 @@ echo CHtml::closeTag('br');
     </div><!-- mainmenu -->
 
     <div id="outer">
-
-
     <?php echo $content; ?>
     </div>
     
