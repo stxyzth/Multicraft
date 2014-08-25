@@ -104,6 +104,7 @@ if (!!Yii::app()->params['ajax_serverlist'])
     }
 ');
 ?>
+
 <?php $this->widget('zii.widgets.CListView', array(
     'emptyText'=>'<br/>'.Yii::t('mc', 'Your own servers and other servers you have access to will be listed here.'),
     'dataProvider'=>$dataProvider,
