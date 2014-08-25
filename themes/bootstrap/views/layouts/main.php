@@ -80,7 +80,6 @@
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-
 <body>
 <div id="wrap">
 <div class="container" id="page">
