@@ -9,3 +9,10 @@ themes/classic/views/
 
 
 protected/config/config.php
+css/*
+net2ftp/*
+protected/protected/models/*
+protected/protected/components/*
+protected/controllers/*
+protected/messages/*
+protected/data/*
