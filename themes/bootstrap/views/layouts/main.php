@@ -66,7 +66,9 @@
       #footer {
         background-color: #f5f5f5;
       }
-
+div[style="padding: 10px; margin: 10px 20px; font-size: 0.8em; text-align: center; border-top: 1px solid #dfdfdf;"] {
+    display:none;
+}
       /* Lastly, apply responsive CSS fixes as necessary */
       @media (max-width: 767px) {
         #footer {
@@ -76,6 +78,7 @@
           padding-right: 20px;
         }
       }
+      
     </style>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
