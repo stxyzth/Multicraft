@@ -7,3 +7,5 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 
+
+protected/config/config.php
