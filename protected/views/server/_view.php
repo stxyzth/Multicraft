@@ -7,6 +7,7 @@
  *
  **/
 ?>
+<div class="panel panel-default">
 <div class="view">
     <?php
     $pl = 0;
@@ -17,7 +18,8 @@
         $img = $pl >= 0 ? 'online.png' : 'offline.png';
     }
     ?>
-    <table style="height: 100%; table-layout: fixed">
+    <div class="table-responsive">
+    <table class="table table-hover table-bordered">
     <colgroup>
         <col style="width: 35px"/>
         <col/>
@@ -58,6 +60,8 @@
         </td>
     </tr>
     </table>
+    </div>
+    </div>
     <?php
         if (!!Yii::app()->params['ajax_serverlist'] && !$data->suspended)
             echo CHtml::script('get_status('.$data->id.');')

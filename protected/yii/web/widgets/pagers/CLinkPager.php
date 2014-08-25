@@ -114,13 +114,13 @@ class CLinkPager extends CBasePager
 			$this->firstPageLabel=Yii::t('yii','&lt;&lt; First');
 		if($this->lastPageLabel===null)
 			$this->lastPageLabel=Yii::t('yii','Last &gt;&gt;');
-		if($this->header===null)
-			$this->header=Yii::t('yii','Go to page: ');
+//		if($this->header===null)
+//			$this->header=Yii::t('yii','Go to page: ');
 
 		if(!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id']=$this->getId();
 		if(!isset($this->htmlOptions['class']))
-			$this->htmlOptions['class']='yiiPager';
+			$this->htmlOptions['class']='pagination pagination-sm'; // Bootstrap pagination - stxyzth
 	}
 
 	/**

@@ -52,6 +52,11 @@ else
         );
     }
 }
+echo CHtml::closeTag('div');
+?>
+</div>
+<div class="col-md-8">
+<?php
 echo CHtml::script('
     imgOpen = "'.Theme::themeFile('images/icons/open.png').'";
     imgClosed = "'.Theme::themeFile('images/icons/closed.png').'";
@@ -63,11 +68,6 @@ echo CHtml::script('
         $("#"+name).stop(true, true).slideToggle(menuShown[name]);
     }
 ');
-echo CHtml::closeTag('div');
-?>
-</div>
-<div class="col-md-8">
-<?php
 if (!!Yii::app()->params['ajax_serverlist'])
     echo CHtml::script('
     function get_status(server)
@@ -113,6 +113,5 @@ if (!!Yii::app()->params['ajax_serverlist'])
         'name'=>Yii::t('mc', 'Name'),
     ),
 ));
-
 ?>
 </div>

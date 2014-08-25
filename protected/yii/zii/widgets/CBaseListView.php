@@ -88,7 +88,7 @@ abstract class CBaseListView extends CWidget
 	/**
 	 * @var string the CSS class name for the pager container. Defaults to 'pager'.
 	 */
-	public $pagerCssClass='pager';
+	public $pagerCssClass='pagination'; // Bootstrap pagination - stxyzth
 	/**
 	 * @var string the CSS class name that will be assigned to the widget container element
 	 * when the widget is updating its content via AJAX. Defaults to 'loading'.
