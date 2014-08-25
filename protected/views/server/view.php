@@ -6,10 +6,14 @@
  *   All rights reserved.
  *
  **/
-$this->breadcrumbs=array(
-    Yii::t('mc', 'Servers')=>array('index'),
-    $model->isNewRecord ? Yii::t('mc', 'New Server') : ($my ? 'Server' : CHtml::encode($model->name)),
+ 
+echo CHtml::openTag('div class="col-md-4 .col-md-offset-3" style="float: right;"');
+Yii::app()->getComponent("bootstrap");
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+    'links'=>array(Yii::t('mc', 'Servers')=>array('index')),
+    )
 );
+echo CHtml::closeTag('div');
 
 Yii::app()->getClientScript()->registerCoreScript('jquery');
 echo CHtml::css('
@@ -28,7 +32,7 @@ echo CHtml::css('
     padding-right: 5px;
 }
 ');
-
+echo CHtml::openTag('div class="col-md-4"');
 if (!$model->isNewRecord)
 {
 $schedule = ($manageUsers && (Yii::app()->user->isSuperuser() || $settings->user_schedule));
@@ -150,6 +154,7 @@ echo CHtml::script('
         $("#"+name).stop(true, true).slideToggle(menuShown[name]);
     }
 ');
+echo CHtml::closeTag('div');
 ?>
 
 <?php if (Yii::app()->user->isSuperuser()): ?>

@@ -7,61 +7,28 @@
  *   All rights reserved.
  *
  **/
+ 
 $this->pageTitle = Yii::app()->name . ' - '.Yii::t('mc', 'Server List');
-
 Yii::app()->getComponent("bootstrap");
 $this->widget('booster.widgets.TbBreadcrumbs', array(
 		'links'=>array(Yii::t('mc', 'Servers'),
 		))
 );
-?>
-</div>
-<?php
 echo CHtml::css('
 #manage { display: none; }
 ');
-
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
 if (Yii::app()->user->isSuperuser())
 {
-    $this->menu=array(
-        array(
-            'label'=>Yii::t('mc', 'Create Server'),
-            'url'=>array('create'),
-            'icon'=>'create',
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
+        array('label'=>Yii::t('mc', 'Create Server'),'url'=>array('create'),'icon'=>'pencil',),
+        '',
+        array('label'=>Yii::t('mc', 'Manage Players'),'url'=>array('player/admin'),'visible'=>Yii::app()->user->isSuperuser(),'icon'=>'user',),
+        array('label'=>Yii::t('mc', 'Manage Commands'),'url'=>array('command/admin'),'visible'=>Yii::app()->user->isSuperuser(),'icon'=>'hdd',),
+    	array('label'=>Yii::t('mc', 'Manage Tasks'),'url'=>array('schedule/admin'),'visible'=>Yii::app()->user->isSuperuser(),'icon'=>'dashboard',),
+        array('label'=>Yii::t('mc', 'Manage Servers'),'url'=>array('server/admin'),'visible'=>Yii::app()->user->isSuperuser(),'icon'=>'tasks',),
         ),
-        array(
-            'label'=>Yii::t('mc', 'Manage Server Data'),
-            'url'=>'javascript:showSub("manage")',
-            'icon'=>'closed',
-            'linkOptions'=>array('id'=>'manage_main'),
-            'submenuOptions'=>array('id'=>'manage'),
-            'items'=>array(
-                array(
-                    'label'=>Yii::t('mc', 'Manage Players'),
-                    'url'=>array('player/admin'),
-                    'visible'=>Yii::app()->user->isSuperuser(),
-                    'icon'=>'player',
-                ),
-                array(
-                    'label'=>Yii::t('mc', 'Manage Commands'),
-                    'url'=>array('command/admin'),
-                    'visible'=>Yii::app()->user->isSuperuser(),
-                    'icon'=>'command',
-                ),
-                array(
-                    'label'=>Yii::t('mc', 'Manage Tasks'),
-                    'url'=>array('schedule/admin'),
-                    'visible'=>Yii::app()->user->isSuperuser(),
-                    'icon'=>'schedule',
-                ),
-                array(
-                    'label'=>Yii::t('mc', 'Manage Servers'),
-                    'url'=>array('server/admin'),
-                    'visible'=>Yii::app()->user->isSuperuser(),
-                    'icon'=>'server',
-                ),
-            ),
-        ),
+      )
     );
 }
 else
@@ -72,7 +39,7 @@ else
             'label'=>Yii::t('mc', 'My Servers'),
             'url'=>array('server/index', 'my'=>true),
             'visible'=>!Yii::app()->user->isGuest,
-            'icon'=>'servers'
+            'icon'=>'tasks'
         );
     }
     else
@@ -81,7 +48,7 @@ else
             'label'=>Yii::t('mc', 'All Servers'),
             'url'=>array('server/index'),
             'visible'=>!Yii::app()->user->isGuest,
-            'icon'=>'back'
+            'icon'=>'globe'
         );
     }
 }
@@ -96,7 +63,9 @@ echo CHtml::script('
         $("#"+name).stop(true, true).slideToggle(menuShown[name]);
     }
 ');
+echo CHtml::closeTag('div');
 ?>
+</div>
 <div class="col-md-8">
 <?php
 if (!!Yii::app()->params['ajax_serverlist'])

@@ -160,12 +160,9 @@ echo CHtml::closeTag('br');
 
 ?>
     </div><!-- mainmenu -->
-
     <div id="outer">
     <?php echo $content; ?>
     </div>
-    
-   
               <div id="push"></div>
               </div>
     </div><!--wrap-->
@@ -174,7 +171,6 @@ echo CHtml::closeTag('br');
          <p class="muted credit" style="text-align: center; margin-top: 20px;">Powered by <a href="http://www.multicraft.org">Multicraft Control Panel</a></p>
         </div>
     </div><!-- footer -->
-
 <!-- page -->
 
 </body>
