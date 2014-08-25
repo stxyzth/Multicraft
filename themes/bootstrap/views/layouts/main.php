@@ -43,8 +43,6 @@
 <body>
 
 <div id="frame">
-<div id="border-left"></div>
-<div id="border-right"></div>
 <div class="container" id="page">
 
     <div id="mainmenu">
@@ -57,8 +55,9 @@
             array(
         		'brand' => 'Multicraft',
 //        		'type' => 'inverse', //Remove the start of this line for black navbar
-        		'fixed' => false,
-        		'fluid' => true,
+        		'fixed' => 'top',
+        		'fluid' => false,
+        		'htmlOptions' => array('style' => 'position:absolute'),
         		'items' => array(
             array(
                 'class' => 'booster.widgets.TbMenu',
@@ -103,6 +102,10 @@
             ),
                 ))))
 	);
+echo CHtml::closeTag('br');
+echo CHtml::closeTag('br');
+echo CHtml::closeTag('br');
+echo CHtml::closeTag('br');
 
 ?>
         <?php if (!$simple): ?>
@@ -124,7 +127,6 @@
     ?><!-- breadcrumbs -->
 
     <?php echo $content; ?>
-
     </div>
     <?php if (Yii::app()->params['copyright']): ?>
     <div id="footer">
