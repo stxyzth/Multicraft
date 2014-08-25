@@ -13,4 +13,4 @@ Preview (no where near the completed version yet):
 Credits:
 ==========
 
-3 Icons used - made by Dave Gandy from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+4 Icons used - made by Dave Gandy from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
