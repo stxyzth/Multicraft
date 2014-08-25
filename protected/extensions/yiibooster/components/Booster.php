@@ -81,7 +81,7 @@ class Booster extends CApplicationComponent {
 	 *
 	 * Note that FontAwesome does not include some of the Twitter Bootstrap built-in icons!
 	 */
-	public $fontAwesomeCss = false;
+	public $fontAwesomeCss = true;
 
 	/**
 	 * @var bool Whether to use minified CSS and Javascript files. Default to true.

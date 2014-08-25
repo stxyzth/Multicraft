@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -13,8 +14,9 @@ $this->widget('booster.widgets.TbBreadcrumbs', array(
 		'links'=>array(Yii::t('mc', 'Home'),
 		))
 );
+
 $this->widget('booster.widgets.TbMenu', array(
-    'type'=>'tabs',
+    'type'=>'list',
     'stacked'=>false,
     'items'=>array(
     array(
@@ -25,7 +27,7 @@ $this->widget('booster.widgets.TbMenu', array(
     array(
         'label'=>Yii::t('mc', 'Help'),
         'url'=>'#',
-        'icon'=>'help',
+        'icon'=>'wrench',
         'linkOptions'=>array(
             'submit'=>'http://multicraft.org/site/docs',
             'confirm'=>Yii::t('mc', "You are leaving your control panel.\n\nYou will be forwarded to the documentation on the official Multicraft website.")),
@@ -33,15 +35,28 @@ $this->widget('booster.widgets.TbMenu', array(
     array(
         'label'=>Yii::t('mc', 'About'),
         'url'=>array('', 'view'=>'about'),
-        'icon'=>'home',
+        'icon'=>'book',
     ),
   ))
 );
-
+?>
+</div>
+<div class="col-md-8">
+<?php
+$this->widget(
+    'booster.widgets.TbPanel',
+    array(
+        'title' => 'Home',
+        'headerIcon' => 'home',
+        'content' => 'Welcome to the new bootstrap theme for Multicraft.'
+	)
+);
 
 ?>
 <br/>
-<?php echo Yii::t('mc', 'Welcome to <b>{Multicraft}</b>, the Minecraft server control panel.', array('{Multicraft}'=>CHtml::link('Multicraft', 'http://www.multicraft.org'))) ?><br/>
+</div>
+<?php
+ Yii::t('mc', 'Welcome to <b>{Multicraft}</b>, the Minecraft server control panel.', array('{Multicraft}'=>CHtml::link('Multicraft', 'http://www.multicraft.org'))) ?><br/>
 
 <?php if (Yii::app()->params['demo_mode'] == 'enabled'): ?>
 <br/>

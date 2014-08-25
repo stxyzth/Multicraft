@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -13,7 +14,9 @@ $this->widget('booster.widgets.TbBreadcrumbs', array(
 		'links'=>array(Yii::t('mc', 'Servers'),
 		))
 );
-
+?>
+</div>
+<?php
 echo CHtml::css('
 #manage { display: none; }
 ');
@@ -93,7 +96,9 @@ echo CHtml::script('
         $("#"+name).stop(true, true).slideToggle(menuShown[name]);
     }
 ');
-
+?>
+<div class="col-md-8">
+<?php
 if (!!Yii::app()->params['ajax_serverlist'])
     echo CHtml::script('
     function get_status(server)
@@ -130,7 +135,6 @@ if (!!Yii::app()->params['ajax_serverlist'])
     }
 ');
 ?>
-
 <?php $this->widget('zii.widgets.CListView', array(
     'emptyText'=>'<br/>'.Yii::t('mc', 'Your own servers and other servers you have access to will be listed here.'),
     'dataProvider'=>$dataProvider,
@@ -141,3 +145,5 @@ if (!!Yii::app()->params['ajax_serverlist'])
     ),
 ));
 
+?>
+</div>
