@@ -7,13 +7,12 @@
  *
  **/
  
-echo CHtml::openTag('div class="col-md-4 .col-md-offset-3" style="float: right;"');
+echo CHtml::openTag('div class="col-md-4"');
 Yii::app()->getComponent("bootstrap");
 $this->widget('booster.widgets.TbBreadcrumbs', array(
     'links'=>array(Yii::t('mc', 'Servers')=>array('index')),
     )
 );
-echo CHtml::closeTag('div');
 
 Yii::app()->getClientScript()->registerCoreScript('jquery');
 echo CHtml::css('
@@ -32,117 +31,38 @@ echo CHtml::css('
     padding-right: 5px;
 }
 ');
-echo CHtml::openTag('div class="col-md-4"');
+
 if (!$model->isNewRecord)
 {
 $schedule = ($manageUsers && (Yii::app()->user->isSuperuser() || $settings->user_schedule));
 $mysql = $editConfigs && @strlen($model->mysqlHost) && ((Yii::app()->params['user_mysql'] && $settings->user_mysql)
     || Yii::app()->user->isSuperuser());
 $bgPlugins = Yii::app()->params['use_bukget'];
-
-$this->menu=array(
-    array(
-        'label'=>Yii::t('mc', 'Chat'),
-        'url'=>array('chat', 'id'=>$model->id),
-        'visible'=>$chat,
-        'icon'=>'chat'
-    ),
-    array(
-        'label'=>$command ? Yii::t('mc', 'Console') : Yii::t('mc', 'Log'),
-        'url'=>array('log', 'id'=>$model->id),
-        'visible'=>$viewLog,
-        'icon'=>'console'
-    ),
-    array(
-        'label'=>Yii::t('mc', 'Players'),
-        'url'=>array('/player/index', 'sv'=>$model->id),
-        'visible'=>$manageUsers, 'icon'=>'player'
-    ),
-    array(
-        'label'=>Yii::t('mc', 'Files'),
-        'url'=>'javascript:showSub("files")',
-        'icon'=>'closed',
-        'linkOptions'=>array('id'=>'files_main'),
-        'submenuOptions'=>array('id'=>'files'),
-        'visible'=>$editConfigs || $bgPlugins || $plugins || $manageUsers || $backup,
-        'items'=>array(
-            array(
-                'label'=>Yii::t('mc', 'Config Files'),
-                'url'=>array('configs', 'id'=>$model->id),
-                'visible'=>$editConfigs,
-                'icon'=>'config'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'BukGet Plugins'),
-                'url'=>array('bgPlugins', 'id'=>$model->id),
-                'visible'=>$bgPlugins ? true : false,
-                'icon'=>'plugin'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Local Plugins'),
-                'url'=>array('plugins', 'id'=>$model->id),
-                'visible'=>$plugins,
-                'icon'=>'plugin'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'FTP File Access'),
-                'url'=>array((Yii::app()->params['ftp_client_disabled'] !== true) ? '/ftpClient/index'
-                    : 'ftp', 'id'=>$model->id),
-                'visible'=>$manageUsers,
-                'icon'=>'file'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Backup'),
-                'url'=>array('backup', 'id'=>$model->id),
-                'visible'=>$backup,
-                'icon'=>'backup'
-            ),
-        )
-    ),
-    array(
-        'label'=>Yii::t('mc', 'Advanced'),
-        'url'=>'javascript:showSub("advanced")',
-        'icon'=>'closed',
-        'linkOptions'=>array('id'=>'advanced_main'),
-        'submenuOptions'=>array('id'=>'advanced'),
-        'visible'=>$manageUsers || $schedule || $mysql,
-        'items'=>array(
-            array(
-                'label'=>Yii::t('mc', 'Commands'),
-                'url'=>array('/command/index', 'sv'=>$model->id),
-                'visible'=>$manageUsers,
-                'icon'=>'command'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'Scheduled Tasks'),
-                'url'=>array('/schedule/index', 'sv'=>$model->id),
-                'visible'=>$schedule,
-                'icon'=>'schedule'),
-            array(
-                'label'=>Yii::t('mc', 'Users'),
-                'url'=>array('users', 'id'=>$model->id),
-                'visible'=>$manageUsers,
-                'icon'=>'user'
-            ),
-            array(
-                'label'=>Yii::t('mc', 'MySQL Database'),
-                'url'=>array('mysqlDb', 'id'=>$model->id),
-                'visible'=>$mysql,
-                'icon'=>'mysql'
-            ),
-        )
-    ),
-    array(
-        'label'=>Yii::t('mc', 'Delete Server'),
-        'url'=>array('delete', 'id'=>$model->id),
-        'visible'=>$delete,
-        'icon'=>'delete'
-    ),
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
+    array('label'=>Yii::t('mc', 'Chat'),'url'=>array('chat', 'id'=>$model->id),'visible'=>$chat,'icon'=>'comment'),
+    array('label'=>$command ? Yii::t('mc', 'Console') : Yii::t('mc', 'Log'),'url'=>array('log', 'id'=>$model->id),'visible'=>$viewLog,'icon'=>'tasks'),
+    array('label'=>Yii::t('mc', 'Players'),'url'=>array('/player/index', 'sv'=>$model->id),'visible'=>$manageUsers, 'icon'=>'user'),
+ array('label'=>Yii::t('mc', 'Files'),'icon'=>'file','visible'=>$editConfigs || $bgPlugins || $plugins || $manageUsers || $backup),
+    	'',
+    array('label'=>Yii::t('mc', 'Config Files'),'url'=>array('configs', 'id'=>$model->id),'visible'=>$editConfigs,'icon'=>'paperclip'),
+    array('label'=>Yii::t('mc', 'BukGet Plugins'),'url'=>array('bgPlugins', 'id'=>$model->id),'visible'=>$bgPlugins ? true : false,'icon'=>'plugin'),
+    array('label'=>Yii::t('mc', 'Local Plugins'),'url'=>array('plugins', 'id'=>$model->id),'visible'=>$plugins,'icon'=>'plugin'),
+    array('label'=>Yii::t('mc', 'FTP File Access'),'url'=>array((Yii::app()->params['ftp_client_disabled'] !== true) ? '/ftpClient/index' : 'ftp', 'id'=>$model->id),'visible'=>$manageUsers,'icon'=>'hdd'),
+    array('label'=>Yii::t('mc', 'Backup'),'url'=>array('backup', 'id'=>$model->id),'visible'=>$backup,'icon'=>'cloud-download'),
+ array('label'=>Yii::t('mc', 'Advanced'),'icon'=>'dashboard','visible'=>$manageUsers || $schedule || $mysql),
+    	'',
+    array('label'=>Yii::t('mc', 'Commands'),'url'=>array('/command/index', 'sv'=>$model->id),'visible'=>$manageUsers,'icon'=>'cog'),
+    array('label'=>Yii::t('mc', 'Scheduled Tasks'),'url'=>array('/schedule/index', 'sv'=>$model->id),'visible'=>$schedule,'icon'=>'calendar'),
+    array('label'=>Yii::t('mc', 'Users'),'url'=>array('users', 'id'=>$model->id),'visible'=>$manageUsers,'icon'=>'user'),
+    array('label'=>Yii::t('mc', 'MySQL Database'),'url'=>array('mysqlDb', 'id'=>$model->id),'visible'=>$mysql,'icon'=>'mysql'),
+    array('label'=>Yii::t('mc', 'Delete Server'),'url'=>array('delete', 'id'=>$model->id),'visible'=>$delete,'icon'=>'trash'),
+    ))
 );
 }
 else
     $this->menu = array(array('label'=>Yii::t('mc', 'Back'), 'url'=>array('index'), 'icon'=>'back'));
-
+echo CHtml::closeTag('div');
 echo CHtml::script('
     imgOpen = "'.Theme::themeFile('images/icons/open.png').'";
     imgClosed = "'.Theme::themeFile('images/icons/closed.png').'";
@@ -156,7 +76,7 @@ echo CHtml::script('
 ');
 echo CHtml::closeTag('div');
 ?>
-
+<div class="col-md-8">
 <?php if (Yii::app()->user->isSuperuser()): ?>
     <div id="movestatus-ajax">
         <?php echo @$data['movestatus'] ?>
@@ -588,3 +508,4 @@ echo CHtml::script('
     '.(@$advanced ? '$(function() { checkAdv(); });' : '').'
 ');
 ?>
+</div>

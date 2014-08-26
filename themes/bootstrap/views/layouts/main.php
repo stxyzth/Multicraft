@@ -137,6 +137,7 @@ $this->widget(
             		array(
                 	      'label'=>Yii::t('mc', 'Logout ({name})', array('{name}'=>Yii::app()->user->name)),
                 	      'url'=>array('/site/logout'),
+                	      'icon'=>'log-out',
                 	      'visible'=>(!Yii::app()->user->isGuest)),
                 	array(
                           'label' => 'Account',
