@@ -77,6 +77,9 @@ echo CHtml::script('
 echo CHtml::closeTag('div');
 ?>
 <div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+    <table class="table table-hover table-bordered">
 <?php if (Yii::app()->user->isSuperuser()): ?>
     <div id="movestatus-ajax">
         <?php echo @$data['movestatus'] ?>
@@ -95,6 +98,7 @@ echo CHtml::closeTag('div');
     $statusIcon = ob_get_clean();
     ob_start();
     ?>
+    
     <div id="buttons">
 <?php
     echo CHtml::ajaxButton(Yii::t('mc', 'Start'), '', array(
@@ -508,4 +512,8 @@ echo CHtml::script('
     '.(@$advanced ? '$(function() { checkAdv(); });' : '').'
 ');
 ?>
+</div>
+</table>
+</div>
+</div>
 </div>
