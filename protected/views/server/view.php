@@ -392,7 +392,6 @@ $attribs[] = array('label'=>Yii::t('mc', 'Permissions'), 'value'=>'', 'cssClass'
     $attribs[] = array('label'=>CHtml::label(Yii::t('mc', 'Cheat Role'),'cheat_role'), 'type'=>'raw',
         'value'=>CHtml::dropDownList('cheat_role', $settings->give_role, $ipRoles),
         'hint'=>Yii::t('mc', 'Role required to use web based give/teleport'));
-
     $attribs[] = array('label'=>'', 'type'=>'raw', 'value'=>CHtml::submitButton($model->isNewRecord ? Yii::t('mc', 'Create') : Yii::t('mc', 'Save')));
 
     if (isset($data['resources']))

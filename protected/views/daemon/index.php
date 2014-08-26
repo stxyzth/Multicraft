@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -6,52 +7,58 @@
  *   All rights reserved.
  *
  **/
+ Yii::app()->getComponent("bootstrap");
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Minecraft Manager Settings');
-$this->breadcrumbs=array(
-    Yii::t('admin', 'Settings')=>array('index'),
-    Yii::t('admin', 'Settings'),
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+    'links'=>array(Yii::t('admin', 'Settings')=>array('index')),
+    )
 );
-
-$this->menu=array(
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
         array(
             'label'=>Yii::t('admin', 'Update Minecraft'),
             'url'=>array('daemon/updateMC'),
-            'icon'=>'update',
+            'icon'=>'upload',
         ),
         array(
             'label'=>Yii::t('admin', 'Multicraft Status'),
             'url'=>array('daemon/status'),
-            'icon'=>'status',
+            'icon'=>'globe',
         ),
         array(
             'label'=>Yii::t('admin', 'Panel Configuration'),
             'url'=>array('daemon/panelConfig'),
-            'icon'=>'config',
+            'icon'=>'cog',
         ),
         array(
             'label'=>Yii::t('admin', 'Statistics'),
             'url'=>array('daemon/statistics'),
-            'icon'=>'statistics',
+            'icon'=>'stats',
         ),
         array(
             'label'=>Yii::t('admin', 'Operations'),
             'url'=>array('daemon/operations'),
-            'icon'=>'operations',
+            'icon'=>'tasks',
         ),
         array(
             'label'=>Yii::t('admin', 'Config File Settings'),
             'url'=>array('configFile/index'),
             'icon'=>'file',
         ),
+      ))
     );
-
+echo CHtml::closeTag('div');
 Yii::app()->clientScript->registerCssFile(Theme::css('detailview.css'));
 Yii::app()->getClientScript()->registerCoreScript('jquery');
-?>
 
+?>
+</div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+    <table class="table table-hover">
 <?php echo CHtml::beginForm() ?>
 <?php echo CHtml::hiddenField('submit', 'true') ?>
-<table class="detail-view">
 <tr class="titlerow">
     <td><?php echo Yii::t('admin', 'Setting') ?></td>
     <td></td>
@@ -86,10 +93,14 @@ foreach ($settings as $name=>$setting): ?>
 <?php endforeach ?>
 <tr>
     <td></td>
-    <td><?php echo CHtml::submitButton(Yii::t('admin', 'Save')) ?></td>
+    <td><?php $this->widget('booster.widgets.TbButton',
+    	array('buttonType' => 'submit','label' => 'Save','context' => 'primary','url' => Yii::t('admin', 'Save'))); ?>
+    </td>
     <td></td>
 </tr>
 </table>
+</div>
+</div>
 <?php
 echo CHtml::script('
     advShow = false;
@@ -110,3 +121,4 @@ echo CHtml::script('
 echo CHtml::endForm();
 ?>
 <br/>
+</div>
