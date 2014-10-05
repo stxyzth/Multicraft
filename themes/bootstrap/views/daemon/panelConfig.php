@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -6,29 +7,52 @@
  *   All rights reserved.
  *
  **/
+Yii::app()->getComponent("bootstrap");
 
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Panel Configuration');
-$this->breadcrumbs=array(
-    Yii::t('admin', 'Settings')=>array('index'),
-    Yii::t('admin', 'Panel Configuration'),
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+    'links'=>array(Yii::t('admin', 'Settings')=>array('index')),
+    )
 );
-
-$this->menu=array(
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
     array(
         'label'=>Yii::t('admin', 'Back'),
         'url'=>array('daemon/index'),
-        'icon'=>'back',
-    ),
+        'icon'=>'hand-left',
+        ),
+    ))
 );
+echo CHtml::closeTag('div');
 
+?>
+</div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+    <table class="table table-hover">
+<?php
 echo CHtml::css('.adv { display: none; }');
+#echo CHtml::openTag('div class="col-md-8"');
+#echo CHtml::openTag('div class="panel panel-default"');
+#echo CHtml::openTag('div class="table-responsive"');
+#echo CHtml::openTag('table class="table table-hover"');
+
+
 echo CHtml::beginForm();
 echo CHtml::hiddenField('submit_settings', 'true');
 
-if(Yii::app()->user->hasFlash('panel_config')): ?>
+if(Yii::app()->user->hasFlash('panel_config')): 
+#echo CHtml::closeTag('table');
+#echo CHtml::closeTag('div');
+#echo CHtml::closeTag('div');
+#echo CHtml::closeTag('div');
+echo CHtml
+?>
 <div class="flash-error">
     <?php echo Yii::app()->user->getFlash('panel_config'); ?>
 </div>
+
 <?php endif;
 
 $attr = array();
@@ -100,6 +124,10 @@ $this->widget('zii.widgets.CDetailView', array(
 echo CHtml::endForm();
 
 ?>
+</table>
+</div>
+</div>
+</div>
 <br/>
 <br/>
 <br/>
