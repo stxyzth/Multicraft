@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -6,25 +7,31 @@
  *   All rights reserved.
  *
  **/
-
+Yii::app()->getComponent("bootstrap");
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Multicraft Status');
-$this->breadcrumbs=array(
-    Yii::t('admin', 'Settings')=>array('index'),
-    Yii::t('admin', 'Multicraft Status'),
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+    'links'=>array(Yii::t('admin', 'Settings')=>array('index')),
+    )
 );
-
-$this->menu=array(
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
     array(
         'label'=>Yii::t('admin', 'Back'),
         'url'=>array('daemon/index'),
-        'icon'=>'back',
-    ),
+        'icon'=>'hand-left',
+        ),
+    ))
 );
 
+echo CHtml::closeTag('div');
 echo Yii::t('admin', 'Your current panel version is {v}', array('{v}' => $this->version));
 ?>
+</div>
 <br/>
-
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+    <table class="table table-hover">
 <?php $w = $this->widget('zii.widgets.CListView', array(
     'emptyText'=>Yii::t('admin', 'No daemons found.').'<br/><br/>'.Yii::t('admin', 'Please check that at least one daemon is started and that it uses the same database you configured as the daemon database using the control panel installer.'),
     'dataProvider'=>$daemonList,
@@ -33,7 +40,10 @@ echo Yii::t('admin', 'Your current panel version is {v}', array('{v}' => $this->
     'beforeAjaxUpdate'=>'function(id){ stopRefreshList(id); }',
     'afterAjaxUpdate'=>'function(id, data){ scheduleRefreshList(id, data); }',
 )); ?>
-
+</table>
+</div>
+</div>
+</div>
 <?php echo CHtml::script('
     var refreshTimer = 0;
     function stopRefreshList(id) {

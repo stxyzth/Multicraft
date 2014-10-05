@@ -1,3 +1,4 @@
+<div class="col-md-4">
 <?php
 /**
  *
@@ -6,27 +7,33 @@
  *   All rights reserved.
  *
  **/
-
+Yii::app()->getComponent("bootstrap");
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Update Minecraft');
-$this->breadcrumbs=array(
-    Yii::t('admin', 'Settings')=>array('index'),
-    Yii::t('admin', 'Update Minecraft'),
+$this->widget('booster.widgets.TbBreadcrumbs', array(
+    'links'=>array(Yii::t('admin', 'Settings')=>array('index')),
+    )
 );
-
-$this->menu=array(
+echo CHtml::openTag('div class="well" style="max-width: 330px;"');
+$this->widget('booster.widgets.TbMenu', array('type'=>'list','stacked'=>false,'items'=>array(
     array(
-        'label'=>Yii::t('admin', 'Add or Remove Files'),
+        'label'=>Yii::t('admin', 'Add of Remove Files'),
         'url'=>array('daemon/files'),
         'icon'=>'file',
-    ),
+        ),
     array(
         'label'=>Yii::t('admin', 'Back'),
         'url'=>array('daemon/index'),
-        'icon'=>'back',
-    ),
+        'icon'=>'hand-left',
+        ),
+    ))
 );
+echo CHtml::closeTag('div');
 ?>
-
+</div>
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+    <table class="table table-hover">
 <form action="" method="post">
 <table class="stdtable" style="width: auto">
 <tr class="titlerow">
@@ -58,6 +65,9 @@ $this->menu=array(
 </tr>
 </table>
 </form>
+</table>
+</div>
+</div>
 <br/>
 
 <?php $w = $this->widget('zii.widgets.CListView', array(
@@ -127,4 +137,5 @@ $this->menu=array(
 <br/>
 <?php echo Yii::t('admin', '<b>.conf file</b>: Contains server binary specific configuration and download links') ?><br/>
 <?php echo Yii::t('admin', '<b>JAR File</b>: The server binary itself') ?>
+</div>
 </div>
