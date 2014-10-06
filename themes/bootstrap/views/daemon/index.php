@@ -7,7 +7,7 @@
  *   All rights reserved.
  *
  **/
- Yii::app()->getComponent("bootstrap");
+Yii::app()->getComponent("bootstrap");
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Minecraft Manager Settings');
 $this->widget('booster.widgets.TbBreadcrumbs', array(
     'links'=>array(Yii::t('admin', 'Settings')=>array('index')),

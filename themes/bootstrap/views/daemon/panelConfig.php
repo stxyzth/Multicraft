@@ -8,7 +8,6 @@
  *
  **/
 Yii::app()->getComponent("bootstrap");
-
 $this->pageTitle=Yii::app()->name . ' - '.Yii::t('admin', 'Panel Configuration');
 $this->widget('booster.widgets.TbBreadcrumbs', array(
     'links'=>array(Yii::t('admin', 'Settings')=>array('index')),
@@ -33,20 +32,12 @@ echo CHtml::closeTag('div');
     <table class="table table-hover">
 <?php
 echo CHtml::css('.adv { display: none; }');
-#echo CHtml::openTag('div class="col-md-8"');
-#echo CHtml::openTag('div class="panel panel-default"');
-#echo CHtml::openTag('div class="table-responsive"');
-#echo CHtml::openTag('table class="table table-hover"');
 
 
 echo CHtml::beginForm();
 echo CHtml::hiddenField('submit_settings', 'true');
 
 if(Yii::app()->user->hasFlash('panel_config')): 
-#echo CHtml::closeTag('table');
-#echo CHtml::closeTag('div');
-#echo CHtml::closeTag('div');
-#echo CHtml::closeTag('div');
 echo CHtml
 ?>
 <div class="flash-error">
