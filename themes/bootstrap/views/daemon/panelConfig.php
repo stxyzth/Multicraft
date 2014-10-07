@@ -38,7 +38,6 @@ echo CHtml::beginForm();
 echo CHtml::hiddenField('submit_settings', 'true');
 
 if(Yii::app()->user->hasFlash('panel_config')): 
-echo CHtml
 ?>
 <div class="flash-error">
     <?php echo Yii::app()->user->getFlash('panel_config'); ?>
